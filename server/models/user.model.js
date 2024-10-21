@@ -43,6 +43,23 @@ const UserSchema = new Schema ({
         maxlength: [16, "Password must not exceed 16 characters"]
 
     },
+    favorites: [
+        {
+            method: {type: String, required: true},
+            size: {type: String, required: true},
+            qty: {type: String, required: true},
+            toppings: {
+                mushrooms: {type: Boolean, default: false},
+                pineapple: {type: Boolean, default: false},
+                olives: {type: Boolean, default: false},
+                jalapenos: {type: Boolean, default: false},
+                basil: {type: Boolean, default: false},
+                tomatoes: {type: Boolean, default: false},
+                potatoes: {type: Boolean, default: false},
+                artichokes: {type: Boolean, default: false},
+            },
+        }
+    ]
 },
     {timestamps: true}
 );

@@ -41,7 +41,7 @@ export const UserController = {
                 process.env.SECRET_KEY
             )
             res.cookie('userToken', userToken, {httpOnly:true})
-            res.status(201).json(potentialUser)
+            res.status(201).json({userId: potentialUser._id});
         }
         catch(err) {
             res.status(500).json(err)
@@ -60,5 +60,58 @@ export const UserController = {
         catch (err) {
             res.status(500).json(err)
         }
-    }
+    },
+    saveFavoritePizza: async (req, res) => {
+        const {userId, pizza} = req.body;
+        try {
+            await User.findByIdAndUpdate(
+                userId,
+                {$push: {favorites: pizza}},
+                {new: true}
+            );
+            console.log('Favorite pizza saved successfully');
+        } catch (error) {
+            console.log('Error saving favorite pizza:', error);
+        }
+    },
+
+    logout: async (req, res) => {
+        res.clearCookies('userToken')
+        res.status(200).json({message:'Successfuly logged out!'})
+    },
+
+    getFavorites: async (req, res) => {
+        const {userId} = req.params;
+        try {
+            const user = await User.findById(userId).select('favorites');
+            if(!user) {
+                return res.status(404).json({message: "User not found"});
+            } 
+            res.status(200).json(user.favorites);
+            } catch(err) {
+                res.status(500).json(err);
+            }
+        },
+    
+        deleteFavorite: async (req, res) => {
+            const {userId, pizza} = req.body;
+            try {
+                const updatedUser = await User.findByIdAndUpdate(
+                    userId,
+                    {$pull: {favorites:{ _id: pizza} }},
+                    {new: true}
+                );
+                if (!updatedUser) {
+                    return res.status(404).json({message: 'User not found'});
+                }
+                console.log('Favorite pizza deleted');
+                res.status(200).json({
+                    message: 'favorite pizza deleted',
+                    updatedFavorites: updatedUser.favorites
+                });
+            } catch (error) {
+                console.log('Error saving favorite pizza:', error);
+                res.status(500).json({message: 'Failed to delete favorite pizza'})
+            }
+}
 }

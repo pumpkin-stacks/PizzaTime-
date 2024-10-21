@@ -11,7 +11,6 @@ import Logout from './components/Logout'
 import Favorites from './components/Favorites'
 
 function App() {
-
   return (
     <>
       <Nav/>
@@ -24,7 +23,6 @@ function App() {
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/favorites' element={<Favorites/>}/>
-
       </Routes>
     </>
   )

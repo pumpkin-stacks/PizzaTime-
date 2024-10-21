@@ -1,10 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { userContext } from '../context/userContext';
 
 const SignUp = () => {
-    // const [user, setUser] = useContext(userContext)
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')

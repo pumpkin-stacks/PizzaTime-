@@ -1,19 +1,32 @@
 import React, { useState } from 'react';
-import { useLocation, Link} from 'react-router-dom'
+import { useLocation, Link, useNavigate} from 'react-router-dom'
+import axios from 'axios'
 
 
 const Nav = () => {
     const location = useLocation();
     let content;
+    const navigate = useNavigate();
 
 
+    const logout = () => {
+        axios.post('http://localhost:8000/api/logout', {}, {withCredentials:true})
+            .then(() => {
+                navigate('/logout')
+            })
+            .catch ((err) => {
+                console.log(err)
+            })
+    }
+    
 
-    if (location.pathname === '/home' || location.pathname === '/account' || location.pathname === '/order' || location.pathname === '/order/subtotal') {
+
+    if (location.pathname === '/home' || location.pathname === '/account' || location.pathname === '/order' || location.pathname === '/checkout' || location.pathname === '/favoritess') {
         content = (
             <>
             <Link to='/home'><button>Home</button></Link>
             <Link to='/order'><button>Order</button></Link>
-            <Link to='/account'><button>Account</button></Link>
+            <button onClick={logout} >Account</button>
             <Link to='/logout'><button>Logout</button></Link>
             </>
         )
