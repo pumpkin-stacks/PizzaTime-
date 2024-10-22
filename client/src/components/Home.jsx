@@ -17,7 +17,6 @@ const Home = (props) => {
         <div className='neworder'>
             <Link to='/order'><button>New Order</button></Link>
             <Link to='/favorites'><button>Order from Favorites</button></Link>
-            <button>Surprise me</button>
         </div>
         </>
     );

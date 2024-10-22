@@ -21,12 +21,11 @@ const Nav = () => {
     
 
 
-    if (location.pathname === '/home' || location.pathname === '/account' || location.pathname === '/order' || location.pathname === '/checkout' || location.pathname === '/favoritess') {
+    if (location.pathname === '/home' || location.pathname === '/order' || location.pathname === '/favorites' || location.pathname === '/checkout' || location.pathname === '/favoritess') {
         content = (
             <>
             <Link to='/home'><button>Home</button></Link>
             <Link to='/order'><button>Order</button></Link>
-            <button onClick={logout} >Account</button>
             <Link to='/logout'><button>Logout</button></Link>
             </>
         )

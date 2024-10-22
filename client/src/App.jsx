@@ -5,7 +5,6 @@ import Login from './components/Login'
 import {Route, Routes} from 'react-router-dom'
 import Home from './components/Home'
 import Order from './components/Order'
-import Account from './components/Account'
 import Checkout from './components/Checkout'
 import Logout from './components/Logout'
 import Favorites from './components/Favorites'
@@ -19,7 +18,6 @@ function App() {
         <Route path='/Login' element={<Login/>}/>
         <Route path='/home' element={<Home/>}/>
         <Route path='/order' element={<Order/>}/>
-        <Route path='/account' element={<Account/>}/>
         <Route path='/checkout' element={<Checkout/>}/>
         <Route path='/logout' element={<Logout/>}/>
         <Route path='/favorites' element={<Favorites/>}/>

@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 
 export const UserController = {
+
+    //register
     register: async (req, res) => {
         try {
             //create user with form data
@@ -21,6 +23,9 @@ export const UserController = {
         }
     },
 
+
+
+    //login
     login: async (req, res) => {
         try {
             //check if the user exists by email
